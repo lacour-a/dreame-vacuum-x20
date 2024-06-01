@@ -262,12 +262,9 @@ class DreameVacuumFlowHandler(ConfigFlow, domain=DOMAIN):
                         }
                     )
 
-                if self.model in DREAME_MODELS or self.model in MIJIA_MODELS:
-                    if self.name is None:
-                        self.name = self.model
-                    return await self.async_step_options()
-                else:
-                    errors["base"] = "unsupported"
+                self.name = self.model
+                return await self.async_step_options()
+
         else:
             errors["base"] = "wrong_token"
 
